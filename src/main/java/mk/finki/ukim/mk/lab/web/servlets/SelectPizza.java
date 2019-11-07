@@ -32,7 +32,6 @@ public class SelectPizza extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
-        WebContext webContext = new WebContext(req, resp, req.getServletContext());
         session.setAttribute("pizza_size", req.getParameter("pizza_size"));
         resp.sendRedirect("/PizzaOrder.do");
     }

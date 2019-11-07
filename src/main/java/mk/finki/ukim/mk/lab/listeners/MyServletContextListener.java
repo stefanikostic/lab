@@ -1,18 +1,18 @@
-package mk.finki.ukim.mk.lab.web;
+package mk.finki.ukim.mk.lab.listeners;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
+@WebListener
 public class MyServletContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        ServletContext sc = sce.getServletContext();
-
+        System.out.println("[WP-log] contextInitialized");
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-
     }
+
 }

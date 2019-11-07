@@ -36,7 +36,6 @@ public class PizzaOrder extends HttpServlet {
         session.setAttribute("clientAddress", req.getParameter("clientAddress"));
         session.setAttribute("clientIp", req.getRemoteAddr());
         session.setAttribute("clientBrowser", req.getHeader("User-Agent"));
-        WebContext webContext = new WebContext(req, resp, req.getServletContext());
         resp.sendRedirect("/ConfirmationInfo.do");
     }
 }

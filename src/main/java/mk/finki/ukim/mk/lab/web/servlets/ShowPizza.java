@@ -30,6 +30,7 @@ public class ShowPizza extends HttpServlet {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         List<Pizza> pizzas = pizzaService.listPizzas();
         webContext.setVariable("pizzas", pizzas);
+        webContext.setVariable("error_msg", req.getSession().getAttribute("error_msg"));
         resp.setContentType("text/html; charset=UTF-8");
         this.springTemplateEngine.process("listPizzas.html", webContext, resp.getWriter());
     }

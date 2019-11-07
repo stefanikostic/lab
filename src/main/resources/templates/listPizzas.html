@@ -14,6 +14,8 @@
     <h1>Welcome to our Pizza Delivery App</h1>
 </header>
 <main>
+    <p th:text="${error_msg}">
+    </p>
     <form method="POST">
     <h2>Choose pizza:</h2>
         <th: block th:each="pizza : ${pizzas}">
