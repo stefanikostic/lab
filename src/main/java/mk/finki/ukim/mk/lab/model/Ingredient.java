@@ -8,22 +8,19 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.validation.constraints.Size;
-import java.util.List;
 
+
+@Data
+@Entity(name = "Ingredients")
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Data
-@Entity(name="Pizzas")
-public class Pizza {
+public class Ingredient {
     @Id
-    @Column(name="pizzaId")
-    private int pizzaId;
+    @Column(name="ingredientId")
+    private String ingredientId;
     private String name;
-    private String description;
-    private List<Ingredient> ingredients;
+    private boolean spicy;
+    private float amount;
     private boolean veggie;
-
 }

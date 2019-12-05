@@ -1,0 +1,98 @@
+GET http://localhost:8181/api/pizzas
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+###
+GET http://localhost:8181/api/pizzas
+page-size:10
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+###
+GET http://localhost:8181/api/pizzas
+page: 2
+page-size:10
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 400, "Response status is not 400");
+});
+%}
+
+###
+GET http://localhost:8181/api/pizzas/1
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+### Missing header
+POST http://localhost:8181/api/pizzas
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 400, "Response status is not 400");
+});
+%}
+
+
+###
+POST http://localhost:8181/api/pizzas
+pizzaId: 1
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 400, "Response status is not 400");
+});
+%}
+
+
+
+###
+GET {{newUrl}}
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+###
+PATCH http://localhost:8181/api/pizza/{{pizzaId}}
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 201");
+  client.assert(response.body.hasOwnProperty("pizzaId"), 'Can not find the pizzaId');
+});
+%}
+
+###
+GET {{newUrl}}
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+###
+DELETE {{newUrl}}
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+###
