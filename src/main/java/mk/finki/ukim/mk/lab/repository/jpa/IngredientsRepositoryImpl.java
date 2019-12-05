@@ -38,7 +38,7 @@ public class IngredientsRepositoryImpl implements IngredientRepository {
                 result.getContent());
     }
 
-    @Override
+/*    @Override
     public Page<Ingredient> getAllSpicyIngredients(int page, int size) {
         Page<Ingredient> result = this.getAllSpicyIngredients(page, size);
 
@@ -46,12 +46,12 @@ public class IngredientsRepositoryImpl implements IngredientRepository {
                 result.getTotalPages(),
                 size,
                 result.getContent());
-    }
+    }*/
 
-    @Override
+  /*  @Override
     public List<Ingredient> getSpicyIngredients() {
         return this.repository.findAll().stream().filter(i->i.isSpicy()).collect(Collectors.toList());
-    }
+    }*/
 
     @Override
     public List<Ingredient> getAll() {

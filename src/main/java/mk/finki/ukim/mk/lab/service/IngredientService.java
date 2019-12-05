@@ -9,10 +9,12 @@ import java.util.Optional;
 public interface IngredientService {
     Page<Ingredient> getAllIngredients(int page, int size);
     List<Ingredient> getAll();
-    Page<Ingredient> getAllSpicyIngredients(int page, int size);
-    List<Ingredient> getSpicyIngredients();
+ /*   Page<Ingredient> getAllSpicyIngredients(int page, int size);
+    List<Ingredient> getSpicyIngredients();*/
     void deleteIngredient(String id);
     Ingredient findById(String id);
     Ingredient createIngredient(String ingredientId, String name, boolean spicy, float amount, boolean veggie);
     Ingredient updateIngredient(String ingredientId, String name, boolean spicy, float amount, boolean veggie);
+
+    List<Ingredient> getAllSpicyIngredients(boolean spicy);
 }

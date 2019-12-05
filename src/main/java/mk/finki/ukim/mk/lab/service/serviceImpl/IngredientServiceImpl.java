@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class IngredientServiceImpl implements IngredientService {
@@ -30,7 +31,7 @@ public class IngredientServiceImpl implements IngredientService {
         return this.ingredientRepository.getAll();
     }
 
-    @Override
+/*    @Override
     public Page<Ingredient> getAllSpicyIngredients(int page, int size) {
         return this.ingredientRepository.getAllSpicyIngredients(page, size);
     }
@@ -38,7 +39,7 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public List<Ingredient> getSpicyIngredients() {
         return this.ingredientRepository.getSpicyIngredients();
-    }
+    }*/
 
     @Override
     public void deleteIngredient(String id) {
@@ -53,9 +54,9 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public Ingredient createIngredient(String ingredientId, String name, boolean spicy, float amount, boolean veggie) {
         Ingredient ingredient = new Ingredient(ingredientId, name, spicy, amount, veggie);
-        if(ingredientRepository.getSpicyIngredients().toArray().length==3 && spicy){
+        /*if(ingredientRepository.getSpicyIngredients().toArray().length==3 && spicy){
             throw new InvalidConsultationSlotIdException();
-        }
+        }*/
         if(ingredientRepository.getAll().stream().anyMatch(i -> i.getName().equals(name))){
             throw new InvalidConsultationSlotIdException();
         }
@@ -70,5 +71,10 @@ public class IngredientServiceImpl implements IngredientService {
         ingredient.setVeggie(veggie);
         ingredient.setAmount(amount);
         return this.ingredientRepository.save(ingredient);
+    }
+
+    @Override
+    public List<Ingredient> getAllSpicyIngredients(boolean spicy) {
+        return this.ingredientRepository.getAll().stream().filter(i -> i.isSpicy()==spicy).collect(Collectors.toList());
     }
 }

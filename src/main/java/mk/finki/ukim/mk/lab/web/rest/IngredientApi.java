@@ -36,14 +36,10 @@ public class IngredientApi {
         return ingredientService.getAllIngredients(page, size);
     }
 
-    @GetMapping("/{spicy}")
-    public Page<Ingredient> getSpicy(@PathVariable String spicy,
-                                     @RequestHeader(name="page", defaultValue = "0", required = false) int page,
-                                     @RequestHeader(name="page-size", defaultValue = "10", required = false) int size){
-        if(spicy.equals("true")){
-            return ingredientService.getAllSpicyIngredients(page, size);
-        }
-            return ingredientService.getAllIngredients(page, size);
+    @GetMapping(params = "spicy")
+    public List<Ingredient> getSpicy(@RequestParam boolean spicy){
+        return this.ingredientService.getAllSpicyIngredients(spicy);
+
     }
 
 

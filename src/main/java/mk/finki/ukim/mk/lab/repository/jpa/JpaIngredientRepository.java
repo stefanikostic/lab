@@ -8,6 +8,5 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface JpaIngredientRepository extends JpaRepository<Ingredient, String> {
-    @Query("select i from Ingredient i WHERE i.spicy like true")
-    Page<Ingredient> getAllSpicyIngredients(int page, int size);
+
 }

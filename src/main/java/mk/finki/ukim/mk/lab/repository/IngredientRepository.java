@@ -11,8 +11,8 @@ public interface IngredientRepository {
     Optional<Ingredient> findById(String ingredientId);
     Ingredient save(Ingredient ingredient);
     Page<Ingredient> getAllIngredients(int page, int size);
-    Page<Ingredient> getAllSpicyIngredients(int page, int size);
-    List<Ingredient> getSpicyIngredients();
+   /* Page<Ingredient> getAllSpicyIngredients(int page, int size);
+    List<Ingredient> getSpicyIngredients();*/
     List<Ingredient> getAll();
     void deleteById(String id);
 }

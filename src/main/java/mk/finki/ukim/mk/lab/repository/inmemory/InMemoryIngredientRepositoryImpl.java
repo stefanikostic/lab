@@ -32,7 +32,7 @@ public class InMemoryIngredientRepositoryImpl implements IngredientRepository {
         return Page.slice(DataHolder.ingredients.stream().sorted().collect(Collectors.toList()), page, size);
     }
 
-    @Override
+ /*   @Override
     public Page<Ingredient> getAllSpicyIngredients(int page, int size) {
         return Page.slice(DataHolder.ingredients.stream().filter(s->s.isSpicy()).collect(Collectors.toList()), page, size);
     }
@@ -40,7 +40,7 @@ public class InMemoryIngredientRepositoryImpl implements IngredientRepository {
     @Override
     public List<Ingredient> getSpicyIngredients() {
         return null;
-    }
+    }*/
 
     @Override
     public List<Ingredient> getAll() {

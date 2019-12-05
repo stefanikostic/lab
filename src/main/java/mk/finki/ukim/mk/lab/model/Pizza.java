@@ -23,6 +23,7 @@ public class Pizza {
     private int pizzaId;
     private String name;
     private String description;
+    @ManyToMany(targetEntity = Ingredient.class)
     private List<Ingredient> ingredients;
     private boolean veggie;
 
