@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin(origins="http://localhost:3000")
 @RequestMapping(path = "/api/ingredients", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 public class IngredientApi {
     private final IngredientService ingredientService;
@@ -41,8 +42,6 @@ public class IngredientApi {
         return this.ingredientService.getAllSpicyIngredients(spicy);
 
     }
-
-
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

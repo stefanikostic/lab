@@ -14,6 +14,8 @@ public interface PizzaService {
 
     Pizza createPizza(int pizzaId, String name, String description, List<Ingredient> ingredients, boolean veggie);
 
-
+    List<Ingredient> sameIngredients(int pizzaId1, int pizzaId2);
+    List<Pizza> lessThen(int totalIngredients);
+    boolean isVeggie(int pizzaId);
     Pizza updateIngredient(int pizzaId, String name, String description, List<Ingredient> ingredients, boolean veggie);
 }

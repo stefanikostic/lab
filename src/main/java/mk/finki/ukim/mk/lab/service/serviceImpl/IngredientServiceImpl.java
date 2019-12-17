@@ -31,15 +31,6 @@ public class IngredientServiceImpl implements IngredientService {
         return this.ingredientRepository.getAll();
     }
 
-/*    @Override
-    public Page<Ingredient> getAllSpicyIngredients(int page, int size) {
-        return this.ingredientRepository.getAllSpicyIngredients(page, size);
-    }
-
-    @Override
-    public List<Ingredient> getSpicyIngredients() {
-        return this.ingredientRepository.getSpicyIngredients();
-    }*/
 
     @Override
     public void deleteIngredient(String id) {
@@ -54,9 +45,9 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public Ingredient createIngredient(String ingredientId, String name, boolean spicy, float amount, boolean veggie) {
         Ingredient ingredient = new Ingredient(ingredientId, name, spicy, amount, veggie);
-        /*if(ingredientRepository.getSpicyIngredients().toArray().length==3 && spicy){
+        if(getAllSpicyIngredients(true).size()==3 && spicy){
             throw new InvalidConsultationSlotIdException();
-        }*/
+        }
         if(ingredientRepository.getAll().stream().anyMatch(i -> i.getName().equals(name))){
             throw new InvalidConsultationSlotIdException();
         }

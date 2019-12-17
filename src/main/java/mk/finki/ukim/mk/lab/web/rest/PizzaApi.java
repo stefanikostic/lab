@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = "/api/pizzas", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 public class PizzaApi {
     private final PizzaService pizzaService;
@@ -31,10 +32,10 @@ public class PizzaApi {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Pizza createPizza(@RequestHeader int pizzaId,
-                                       @RequestHeader("name") String name,
-                                       @RequestHeader("description") String description,
-                                       @RequestHeader("ingredients") List<Ingredient> ingredients,
-                                       @RequestHeader("veggie") boolean veggie,
+                                       @RequestParam("name") String name,
+                                       @RequestParam("description") String description,
+                                       @RequestParam("ingredients") List<Ingredient> ingredients,
+                                       @RequestParam(defaultValue = "false", name="veggie") boolean veggie,
                                        HttpServletResponse response,
                                        UriComponentsBuilder builder){
         Pizza result = pizzaService.createPizza(pizzaId, name, description, ingredients, veggie);
@@ -42,6 +43,15 @@ public class PizzaApi {
         return result;
     }
 
+    @GetMapping(params = "totalIngredients")
+    public List<Pizza> ingredientsLessThan(@RequestParam int totalIngredients){
+        return pizzaService.lessThen(totalIngredients);
+    }
+
+    @GetMapping(path = "/compare")
+    public List<Ingredient> sameIngredients(@RequestParam int pizzaId1, @RequestParam int pizzaId2){
+        return pizzaService.sameIngredients(pizzaId1, pizzaId2);
+    }
 /*    @GetMapping("{id}/pizzas")
     public List<Pizza> getPizzasWithIn(@PathVariable String pizzaId)
     {
@@ -55,7 +65,7 @@ public class PizzaApi {
         return this.pizzaService.findById(Integer.parseInt(pizzaId));
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public Pizza updatePizza(@RequestHeader int pizzaId,
                                   @RequestHeader("name") String name,
                                   @RequestHeader("description") String description,
